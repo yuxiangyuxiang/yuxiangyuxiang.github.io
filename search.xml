@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>设计模式-工厂模式</title>
+      <link href="/2019/10/19/she-ji-mo-shi-gong-han-mo-shi/"/>
+      <url>/2019/10/19/she-ji-mo-shi-gong-han-mo-shi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="设计模式之工厂模式-amp-工厂方法模式-amp-抽象工厂模式"><a href="#设计模式之工厂模式-amp-工厂方法模式-amp-抽象工厂模式" class="headerlink" title="设计模式之工厂模式&amp;工厂方法模式&amp;抽象工厂模式"></a>设计模式之工厂模式&amp;工厂方法模式&amp;抽象工厂模式</h2><p><em>工厂模式（Factory Pattern）是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象</em></p><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote><p><strong>定义：</strong> 定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行</p><p><strong>分类：</strong></p><blockquote><ol><li><em>简单工厂（Simple Factory）模式</em>，又称静态工厂方法模式</li><li><em>工厂方法（Factory Method）模式</em>，又称多态性工厂模式或虚拟构造子模式</li><li><em>抽象工厂（Abstract Factory）模式</em>，又称工具箱模式</li></ol></blockquote><p><strong>主要功能：</strong> 主要功能是帮助我们把对象的实例化部分抽取了出来，目的是降低系统中代码耦合度，并且增强了系统的扩展性</p><p><strong>在开源框架中的使用：</strong></p><blockquote><ol><li>Spring中通过getBean(“xxx”) 获取Bean</li><li>Java消息服务JMS中（这以消息队列ActiveMQ为例）<pre><code> // 1、创建一个连接工厂对象，需要指定服务的ip及端口。 ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.xx.xx:xxxxx&quot;); // 2、使用工厂对象创建一个Connection对象。 Connection connection = connectionFactory.createConnection();</code></pre></li></ol><p><strong>为什么要使用工厂模式：</strong></p><ol><li><strong>解耦：</strong> 把对象的创建和使用的过程分开</li><li><strong>降低代码重复：</strong> 如果创建对象的过程都很复杂，需要一定的代码量，而且很多地方都要用到，那么就会有很多的重复代码</li><li><strong>降低维护成本：</strong> 由于创建过程都由工厂统一管理，所以发生业务逻辑变化，不需要找到所有需要创建某个对象的地方去逐个修正，只需要在工厂里修改即可，降低维护成本</li></ol></blockquote></blockquote><hr><h4 id="一、简单工厂模式"><a href="#一、简单工厂模式" class="headerlink" title="一、简单工厂模式"></a>一、简单工厂模式</h4><p><em>严格的说，简单工厂模式并不是23种常用的设计模式之一，它只算工厂模式的一个特殊实现。简单工厂模式在实际中的应用相对于其他两个工厂模式用的还是相对少得多，因为它只适应很多简单的情况</em></p><p><em>最重要的是它违背了我们在概述中说的 <strong>==开放-封闭原则==</strong>（可以通过反射的机制来避免）。因为每次你要新添加一个功能，都需要在生switch-case语句（或者if-else语句）中去修改代码，添加分支条件</em></p><p><strong>适用场景：</strong></p><ul><li>创建的对象较少</li><li>客户端不关心对象的创建过程</li></ul><p><strong>简单工厂模式角色分配：</strong></p><ol><li><strong>工厂(Factory)角色：</strong> 简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。工厂类可以直接被外部调用，创建所需的产品对象</li><li><strong>抽象产品(Product)角色：</strong> 简单工厂模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口</li><li><strong>具体产品(Concrete Product)角色：</strong> 简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例</li></ol><p><strong>简单工厂模式结构图</strong></p><p><img src="https://note.youdao.com/yws/res/3018/WEBRESOURCE023b70852baff37122039478cf473c41" alt="s.jpg"></p><p><strong>简单工厂实例：</strong></p><p><em>创建一个可以绘制不同形状的绘图工具，可以绘制圆形、长方形、正方形等，每个图形都会有一个draw()方法用于绘图</em></p><ol><li><p>创建Shape接口</p><pre><code>public interface Shape { void draw();}</code></pre></li><li><p>创建实现改接口的具体实现类</p><pre><code>/*** 圆形*/public class Circle implements Shape { public Circle() {     System.out.println(&quot;Circle：圆形&quot;); } @Override public void draw() {     System.out.println(&quot;Draw Circle&quot;); }}/*** 长方形*/public class Rectangle implements Shape { public Rectangle() {     System.out.println(&quot;Rectangle：长方形&quot;); } @Override public void draw() {     System.out.println(&quot;Draw Rectangle&quot;); }}/*** 正方形*/public class Square implements Shape { public Square() {     System.out.println(&quot;Square：正方形&quot;); } @Override public void draw() {     System.out.println(&quot;Draw Square&quot;); }}</code></pre></li><li><p>创建工厂类</p><pre><code>public class ShapeFactory { //使用getShape()方法获取形状类型的对象 public static Shape getShape(String shapeType) {     if (shapeType == null) {         return null;     }     if (shapeType.equalsIgnoreCase(&quot;CIRCLE&quot;)) {         return new Circle();     } else if (shapeType.equalsIgnoreCase(&quot;RECTANGLE&quot;)) {         return new Rectangle();     } else if (shapeType.equalsIgnoreCase(&quot;SQUARE&quot;)) {         return new Square();     }     return null; }}</code></pre></li><li><p>测试类</p><pre><code>public class Client { public static void main(String[] args) {     //获取Circle的对象，并调用它的draw()方法     Shape circle = ShapeFactory.getShape(&quot;CIRCLE&quot;);     circle.draw();     //获取Rectangle的对象，并调用它的draw()方法     Shape rectangle = ShapeFactory.getShape(&quot;Rectangle&quot;);     rectangle.draw();     //获取Square的对象，并调用它的draw()方法     Shape square = ShapeFactory.getShape(&quot;square&quot;);     square.draw(); }}</code></pre></li></ol><p><strong>运行结果</strong></p><pre><code>Circle：圆形Draw CircleRectangle：长方形Draw RectangleSquare：正方形Draw Square</code></pre><p><em>这样的实现有个问题，如果新增新的形状类型的话，就需要修改工厂类中的getShape()方法，这明显不符合 <strong>开放-封闭原则</strong></em></p><h4 id="一-一使用反射机制改造简单工厂"><a href="#一-一使用反射机制改造简单工厂" class="headerlink" title="一-一使用反射机制改造简单工厂"></a>一-一使用反射机制改造简单工厂</h4><p><strong>将工厂类改造为：</strong></p><pre><code>/** * 利用反射解决简单工厂每次增加新的产品类型都需要修改工厂中的方法的弊端 */public class ShapeFactory_1 {    //方式一：使用泛型省略类型强制转换，支持多态↑↓    public static &lt;T&gt; T getClass(Class&lt;? extends T&gt; clazz) {        T obj = null;        try {            obj = (T) Class.forName(clazz.getName()).newInstance();        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {            e.printStackTrace();        }        return obj;    }    //方式二：调用时需要进行强制转换↑↓    public static Object getClass_1(Class&lt;? extends Shape&gt; clazz) {        Object obj = null;        try {            obj = Class.forName(clazz.getName()).newInstance();        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {            e.printStackTrace();        }        return obj;    }}</code></pre><p><strong>测试类</strong></p><pre><code>public class Client_1 {    public static void main(String[] args) {        Circle circle = ShapeFactory_1.getClass(Circle.class);        circle.draw();        Rectangle rectangle = ShapeFactory_1.getClass(Rectangle.class);        rectangle.draw();        //方式二：        Square square = (Square) ShapeFactory_1.getClass_1(Square.class);        square.draw();    }}</code></pre><p><em>使用反射的方式让程序符合了 <strong>开放-封闭原则</strong>，但是每一次传入的都是产品类的全部路径，还可以通过 <strong>反射+配置文件</strong>的方式改善</em></p><hr><h4 id="二、工厂方法模式"><a href="#二、工厂方法模式" class="headerlink" title="二、工厂方法模式"></a>二、工厂方法模式</h4><p><em>工厂方法模式是简单工厂的进一步深化，在工厂方法模式中，我们不再提供一个统一的工厂类来创建所有的对象，而是针对不同的对象提供不同的工厂。也就是说 <strong>每个对象都有一个与之对应的工厂</strong>，是工厂模式家族中用得最多的模式</em></p><p><strong>适用场景：</strong></p><ul><li>一个类不知道它所需要的对象的类：在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可，具体的产品对象由具体的工厂类创建；客户端需要知道创建具体产品的工厂类</li><li>一个类通过其子类来指定创建那个对象：在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏原则</li><li>将创建对象的任务委托给多个多个工厂子类中的某一个，客户端在使用时可以无需关心是哪一个工厂子类创建产品子类，需要时再动态指定，可将具体工厂类的类名存储在配置文件或数据库中<blockquote><blockquote><ol><li>客户只知道创建产品的工厂名，而不知道具体的产品名。如TCL电视工厂、海信电视工厂等</li><li>创建对象的任务由多个具体子工厂中的某一个完成，而抽象工厂只提供创建产品的接口</li><li>客户不关心创建产品的细节，只关心产品的品牌。</li></ol></blockquote></blockquote></li></ul><p><strong>工厂方法模式角色分配：</strong></p><ol><li><strong><em>抽象工厂(Abstract Factory)角色：</em></strong> 是工厂方法模式的核心，与应用程序无关。任何在模式中创建的对象的工厂必须实现这个接口</li><li><strong><em>具体工厂(Concrete Factory)角色：</em></strong> 这是实现抽象接口的具体工厂类，包含于应用程序密切相关的逻辑，并且受到应用程序调用以创建某一种产品对象</li><li><strong><em>抽象产品(Abstract Product)角色：</em></strong> 工厂方法模式所创建的对象的超类型，也就是产品对象的共同父类或共同拥有的接口</li><li><strong><em>具体产品(Concrete Product)角色：</em></strong> 这个角色实现了抽象产品角色所定义的接口。某具体产品由专门的具体工厂创建，它们之间往往一一对应</li></ol><p><strong>工厂方法模式结构图</strong></p><p><img src="https://note.youdao.com/yws/res/2996/WEBRESOURCEfc91804b48dd0d9481ea30a44b3f09e7" alt="q.jpg"></p><p><strong>工厂方法模式实例：</strong></p><p><em>上面简单工厂例子中的图形接口以及相关图像实现类不变。我们只需要增加一个工厂接口以及实现这个接口的工厂类即可</em></p><ol><li>增加一个工厂接口<pre><code>public interface Factory { Shape getShape();}</code></pre></li><li>增加相关工厂类<pre><code>/*** 圆形工厂类*/public class CircleFactory implements Factory { @Override public Shape getShape() {     return new Circle(); }}/*** 长方形工厂类*/public class RectangleFactory implements Factory { @Override public Shape getShape() {     return new Rectangle(); }}/*** 正方形工厂类*/public class SquareFactory implements Factory { @Override public Shape getShape() {     return new Square(); }}</code></pre></li><li>测试类<pre><code>public class Client { public static void main(String[] args) {     CircleFactory circleFactory = new CircleFactory();     Shape circle = circleFactory.getShape();     circle.draw(); }}</code></pre></li></ol><p><strong>输出结果</strong></p><pre><code>Circle：圆形Draw Circle</code></pre><h4 id="三、抽象工厂模式"><a href="#三、抽象工厂模式" class="headerlink" title="三、抽象工厂模式"></a>三、抽象工厂模式</h4><p><em>在工厂方法模式中，我们发现我们生产的都是同一类产品。抽象工厂模式就是工厂方法模式的进一步深化，在这个模式中的工厂类不单单创建一种产品，而是可以创建一组产品</em></p><p><em>是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构</em></p><p><strong>适用场景：</strong></p><blockquote><ul><li>和工厂方法一样客户端不需要知道它所创建的对象的类</li><li>需要一组对象共同完成某种功能时，并且存在可能多组对象完成不同功能的情况(属于同一个产品族的产品)<blockquote><ol><li>当需要创建的对象是一系列相互关联或相互依赖的产品族时，如电器工厂中的电视机、洗衣机、空调等</li><li>系统中有多个产品族，但每次只使用其中的某一族产品。如有人只喜欢穿某一个品牌的衣服和鞋</li><li>系统中提供了产品的类库，且所有产品的接口相同，客户端不依赖产品实例的创建细节和内部结构</li></ol></blockquote></li><li>系统结构稳定，不会频繁的增加对象(当产品族中需要增加一个新的产品时，所有的工厂类都需要进行修改)</li></ul></blockquote><p><strong>抽象工厂方法模式角色分配：</strong></p><ol><li><strong><em>抽象工厂(Abstract Factory)角色：</em></strong> 是工厂方法模式的核心，与应用程序无关。任何在模式中创建的对象的工厂类必须实现这个接口</li><li><strong><em>具体工厂类(Concrete Factory)角色：</em></strong> 这是实现抽象工厂接口的具体工厂类，包含与应用程序密切相关的逻辑，并且受到应用程序调用以创建某一种产品对象</li><li><strong><em>抽象产品(Abstract Product)角色：</em></strong> 工厂方法模式所创建对象的超类型，也就是产品对象的共同父类或共同拥有接口</li><li><strong><em>具体产品(Concrete Product)角色：</em></strong> 抽象工厂模式所创建的任何产品对象都是某一个具体产品类的实例。在抽象工厂中创建的产品属于同一产品族，这不同于上面的工厂模式中的工厂只创建单一产品</li></ol><p><strong>抽象工厂模式结构图</strong></p><p><img src="https://note.youdao.com/yws/res/3006/WEBRESOURCE08db0fe6b1e9b154b24ccb1046f6d307" alt="r.jpg"></p><p><strong>抽象工厂的工厂和工厂方法中的工厂区别：</strong></p><p><strong><em>==抽象工厂是生产一整套有产品的（至少要生产两个产品)，这些产品必须相互是有关系或有依赖的，而工厂方法中的工厂是生产单一产品的工厂==</em></strong></p><p><strong>抽象工厂模式实例：</strong></p><p><em>假设现在存在AK、M4A1两类枪，每一种枪对应一种子弹。我们现在这样考虑生产AK的工厂可以顺便生产AK使用的子弹，生产M4A1的工厂可以顺便生产M4A1使用的子弹。（AK工厂生产AK系列产品包括子弹啊，AK枪的类型啊这些，M4A1工厂同理）</em></p><ol><li><p>创建相关接口</p><pre><code>//创建枪及子弹的接口public interface Gun { void shooting();}public interface Bullet { void load();}</code></pre></li><li><p>创建接口对应的实现类</p><pre><code>//枪实现类public class AK implements Gun { @Override public void shooting() {     System.out.println(&quot;shooting with AK&quot;); }}public class M4A1 implements Gun { @Override public void shooting() {     System.out.println(&quot;shooting with M4A1&quot;); }}//子弹实现类public class AK_Bullet implements Bullet { @Override public void load() {     System.out.println(&quot;load bullets with AK&quot;); }}public class M4A1_Bullet implements Bullet { @Override public void load() {     System.out.println(&quot;load bullets with M4A1&quot;); }}</code></pre></li><li><p>创建工厂接口</p><pre><code>public interface Factory { Gun productGun(); Bullet productBullet();}</code></pre></li><li><p>创建具体工厂</p><pre><code>//AK工厂public class AK_Factory implements Factory {  @Override  public Gun productGun() {      return new AK();  }  @Override  public Bullet productBullet() {      return new AK_Bullet();  }}//M4A1工厂public class M4A1_Factory implements Factory {  @Override  public Gun productGun() {      return new M4A1();  }  @Override  public Bullet productBullet() {      return new M4A1_Bullet();  }}</code></pre></li><li><p>测试类</p><pre><code>public class Client { public static void main(String[] args) {     Factory factory;     Gun gun;     Bullet bullet;     factory = new AK_Factory();     bullet = factory.productBullet();     bullet.load();     gun = factory.productGun();     gun.shooting(); }}</code></pre></li></ol><p><strong>输出结果</strong></p><pre><code>load bullets with AKshooting with AK</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式-单例模式</title>
       <link href="/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/"/>
       <url>/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/</url>
@@ -54,6 +79,31 @@
     
     
     <entry>
+      <title>My First Blog</title>
+      <link href="/2019/10/19/2017-conclusion/2017-conclusion/"/>
+      <url>/2019/10/19/2017-conclusion/2017-conclusion/</url>
+      
+        <content type="html"><![CDATA[<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=566261001&auto=1&height=66"></iframe></div><h4 id="First-root"><a href="#First-root" class="headerlink" title="First root"></a>First root</h4><p><strong>First of me</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> init </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> init </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>看懂UML类图和时序图</title>
       <link href="/2019/10/19/kan-dong-uml-lei-tu-he-shi-xu-tu/"/>
       <url>/2019/10/19/kan-dong-uml-lei-tu-he-shi-xu-tu/</url>
@@ -71,31 +121,6 @@
         <tags>
             
             <tag> 设计模式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>二零一七年终总结</title>
-      <link href="/2018/01/22/2017-conclusion/2017-conclusion/"/>
-      <url>/2018/01/22/2017-conclusion/2017-conclusion/</url>
-      
-        <content type="html"><![CDATA[<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407679465&auto=1&height=66"></iframe></div><p>时间过得很快，终于等到放寒假了，虽然这几个月没有课，天天和放假也没啥区别呢。细数一下，还有5个月就要毕业了吧，大一刚入学的场景却依然清楚地记得，转眼间就成了老学长了呢。闲来无事，随便写写，有感而发，无病呻吟而已。</p><h1 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h1><hr><p>回顾我的2017，没做什么事，令我能记得就3件大事吧：</p><ul><li>失恋ing</li><li>ACM退役</li><li>顺利保研</li></ul><p><strong>第一件事</strong>就不想过多回忆了，<strong>2014.12.13 ~ 2017.03.01</strong>，曲终人散。<br><img src="749826.jpg" alt><br>最后引用《我的少女时代》里的一句话吧。</p><blockquote><p>每人都有一颗林真心，遇见是最美好的小幸运，谢谢你出现在我的青春里。</p></blockquote><p><img src="1.jpg" alt><br><strong>第二件事</strong>其实也是黯淡退出吧，大三下开始课程繁忙，也就没怎么训练了，再加上暑假考驾照，于是乎就退役了。回顾三年来，从大一入学时电脑都没怎么碰过的小白，到现在算法也略有所知，也是付出过很大的努力吧，毕竟当年每天刷题，为了一个bug而熬夜到凌晨。最后也算是混了个水水的金牌，奖项不算耀眼。但最重要的是从这段经历中，学到了拼搏、坚持的一种精神，这对以后的研究生涯想必也有很大帮助。<br><img src="2.jpg" alt><br><strong>第三件事</strong>也是意料之中吧，没有什么波折。纠结了很多，虽然<strong>专业第一</strong>，但是最后还是选择保了本校。要问原因，也许是校园情怀，也许是导师人很好，也许是为了方便更早研究，也许就是懒吧。现在尘埃落定，靠人靠天不如靠自己，继续努力吧。<br><img src="3.jpg" alt></p><p>过去的一年，学业未有很大长进，看着同学们整页的4.0绩点，心里倒也没有什么不平衡了。下学期保了研之后选了一门研究生的文本挖掘课，也马马虎虎读了几十篇论文，也算是对自然语言处理和深度学习入了个门，最后的presentation做的还算满意。</p><h1 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h1><hr><p>今年最重要的大事莫过于毕业论文了，因为以后要做的方向是句法分析，所以导师给我的毕业论文安排的就是《基于循环神经网络的成分句法分析》。虽然说是基于ACL2013的一篇论文改编的，但是目前为止，我还没有发现有人做和这个完全一样的。也许最后写的好的话可以直接发paper了。</p><p>但是目前基本的框架还没完全搭建起来吧，代码还不是很熟练，现在只写了一个最基础的动态规划+RNN。最近有如下计划：</p><ul><li>准备试一下动态规划+LSTM。</li><li>然后动态规划扩增一个维度，用来保存左右结点的head结点。</li><li>如果这个写好了，就可以和我github找到的PCFG+CYK代码融合了，准备加上每个结点的POS。</li><li>最后加入预训练词向量应该就基本完成了。</li></ul><p>希望能顺利毕业吧，前一段时间一直对一些实现细节有些困惑，代码还写错了，还以为理论错了。也不知道最后出来的结果会怎么样，希望能不错。</p><p>生活方面，最近半年越来越懒了，极少出门，睡得晚，起的也晚。最近买了把尤克里里，也算是陶冶陶冶情操吧，不至于一直盯着电脑。现在也小有长进，能弹一点点了。</p><p>现在能聊天的人越来越少了，QQ微信放那一天也不一定会有人来找，就算有人也多半是咨询问题的，等一个可以交心的人吧。有时我也想过，我是不是太像中央空调了，对所有人都这么有耐心，到头来却还是一个人，付出那么多最后还是一无所有。<br><img src="4.jpg" alt><br>最后还是祝自己2018年顺利吧，希望毕业顺利，研究生涯小有收获，最后等一个有缘人吧。</p><blockquote><p>我遇见谁，会有怎样的对白。<br>我等的人，她在多远的未来。</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 随笔 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 随笔 </tag>
             
         </tags>
       
