@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>yuyuxiang的博客</title>
+  
+  <subtitle>yuxiang</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://yuyuxiang.com/"/>
+  <updated>2019-10-19T03:07:40.952Z</updated>
+  <id>https://yuyuxiang.com/</id>
+  
+  <author>
+    <name>喻祥</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>My First Article</title>
+    <link href="https://yuyuxiang.com/2019/10/19/my-first-article/"/>
+    <id>https://yuyuxiang.com/2019/10/19/my-first-article/</id>
+    <published>2019-10-19T03:06:19.000Z</published>
+    <updated>2019-10-19T03:07:40.952Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;看懂UML类图和时序图&quot;&gt;&lt;a href=&quot;#看懂UML类图和时序图&quot; class=&quot;headerlink&quot; title=&quot;看懂UML类图和时序图&quot;&gt;&lt;/a&gt;看懂UML类图和时序图&lt;/h2&gt;&lt;p&gt;图形使用Enterprise Architect
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二零一七年终总结</title>
+    <link href="https://yuyuxiang.com/2018/01/22/2017-conclusion/"/>
+    <id>https://yuyuxiang.com/2018/01/22/2017-conclusion/</id>
+    <published>2018-01-22T04:32:09.000Z</published>
+    <updated>2019-10-19T02:09:27.643Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://yuyuxiang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://yuyuxiang.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
