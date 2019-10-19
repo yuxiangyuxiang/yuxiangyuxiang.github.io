@@ -11,7 +11,6 @@ layout: "about"
 
 # 联系方式
 * <b>电子邮箱</b>
-i@godweiyang.com
 794033364@qq.com
 * <b>地址</b>
 重庆市渝中区，邮编400010

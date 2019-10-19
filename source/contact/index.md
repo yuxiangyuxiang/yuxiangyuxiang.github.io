@@ -1,14 +1,14 @@
 ---
 title: contact
-date: 2019-07-26 17:17:02
+date: 2019-10-19 17:17:02
 type: "contact"
 layout: "contact"
 ---
 
 # 欢迎留言
 大家有任何问题，都可以在评论区给我留言，或者加我联系方式：
-* QQ：**792321264**
-* 微信：**weiyang792321264**
+* QQ：**794033364**
+* 微信：**yx794033364**
 
 我很忙啦，如果不是很麻烦的问题就直接在评论区留言啦。
 **当然不介意小改改加我哦~~**
@@ -21,7 +21,7 @@ layout: "contact"
 * **头像：**你的头像地址
 
 例如我的博客友链，大家可以加到自己博客里哦：
-* **名称：**godweiyang
-* **地址：**https://godweiyang.com
-* **简介：**ECNU NLPer
-* **头像：**https://godweiyang.com/medias/avatars/avatar.jpg
+* **名称：**yuxiangyuxiang
+* **地址：**http://www.puzzleyx.com
+* **简介：**Puzzle
+* **头像：**http://www.puzzleyx.com/medias/avatars/avatar.jpg
