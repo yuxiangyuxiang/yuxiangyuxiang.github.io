@@ -17,7 +17,7 @@ layout: "friends"
 * **头像：**你的头像地址
 
 例如我的博客友链，大家可以加到自己博客里哦：
-* **名称：**godweiyang
-* **地址：**https://godweiyang.com
+* **名称：**yuxiangyuxiang
+* **地址：**http://www.puzzleyx.com
 * **简介：**ECNU NLPer
-* **头像：**https://godweiyang.com/medias/avatars/avatar.jpg
+* **头像：**http://www.puzzleyx.com/medias/avatars/avatar.jpg
