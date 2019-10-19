@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.puzzleyx.com/"/>
-  <updated>2019-10-19T11:26:32.478Z</updated>
+  <updated>2019-10-19T12:31:41.616Z</updated>
   <id>https://www.puzzleyx.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>设计模式-工厂模式</title>
-    <link href="https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-gong-han-mo-shi/"/>
-    <id>https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-gong-han-mo-shi/</id>
-    <published>2019-10-19T11:25:22.000Z</published>
-    <updated>2019-10-19T11:26:32.478Z</updated>
+    <link href="https://www.puzzleyx.com/2019/10/17/she-ji-mo-shi-gong-han-mo-shi/"/>
+    <id>https://www.puzzleyx.com/2019/10/17/she-ji-mo-shi-gong-han-mo-shi/</id>
+    <published>2019-10-17T06:25:22.000Z</published>
+    <updated>2019-10-19T12:31:41.616Z</updated>
     
     <summary type="html">
     
@@ -44,10 +44,10 @@
   
   <entry>
     <title>设计模式-单例模式</title>
-    <link href="https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/"/>
-    <id>https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/</id>
-    <published>2019-10-19T07:51:21.000Z</published>
-    <updated>2019-10-19T07:55:37.229Z</updated>
+    <link href="https://www.puzzleyx.com/2019/10/16/she-ji-mo-shi-dan-li-mo-shi/"/>
+    <id>https://www.puzzleyx.com/2019/10/16/she-ji-mo-shi-dan-li-mo-shi/</id>
+    <published>2019-10-16T05:51:21.000Z</published>
+    <updated>2019-10-19T12:31:36.832Z</updated>
     
     <summary type="html">
     
@@ -70,10 +70,10 @@
   
   <entry>
     <title>设计模式-开篇</title>
-    <link href="https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-kai-pian/"/>
-    <id>https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-kai-pian/</id>
-    <published>2019-10-19T07:39:12.000Z</published>
-    <updated>2019-10-19T07:55:18.430Z</updated>
+    <link href="https://www.puzzleyx.com/2019/10/15/she-ji-mo-shi-kai-pian/"/>
+    <id>https://www.puzzleyx.com/2019/10/15/she-ji-mo-shi-kai-pian/</id>
+    <published>2019-10-15T04:39:12.000Z</published>
+    <updated>2019-10-19T12:31:31.216Z</updated>
     
     <summary type="html">
     
@@ -95,37 +95,11 @@
   </entry>
   
   <entry>
-    <title>My First Blog</title>
-    <link href="https://www.puzzleyx.com/2019/10/19/2017-conclusion/2017-conclusion/"/>
-    <id>https://www.puzzleyx.com/2019/10/19/2017-conclusion/2017-conclusion/</id>
-    <published>2019-10-19T04:12:12.000Z</published>
-    <updated>2019-10-19T11:24:32.372Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="init" scheme="https://www.puzzleyx.com/categories/init/"/>
-    
-    
-      <category term="init" scheme="https://www.puzzleyx.com/tags/init/"/>
-    
-  </entry>
-  
-  <entry>
     <title>看懂UML类图和时序图</title>
-    <link href="https://www.puzzleyx.com/2019/10/19/kan-dong-uml-lei-tu-he-shi-xu-tu/"/>
-    <id>https://www.puzzleyx.com/2019/10/19/kan-dong-uml-lei-tu-he-shi-xu-tu/</id>
-    <published>2019-10-19T03:06:19.000Z</published>
-    <updated>2019-10-19T08:53:06.207Z</updated>
+    <link href="https://www.puzzleyx.com/2019/10/14/kan-dong-uml-lei-tu-he-shi-xu-tu/"/>
+    <id>https://www.puzzleyx.com/2019/10/14/kan-dong-uml-lei-tu-he-shi-xu-tu/</id>
+    <published>2019-10-14T03:06:19.000Z</published>
+    <updated>2019-10-19T12:31:23.879Z</updated>
     
     <summary type="html">
     
@@ -143,6 +117,32 @@
     
     
       <category term="设计模式" scheme="https://www.puzzleyx.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>My First Blog</title>
+    <link href="https://www.puzzleyx.com/2019/10/14/2017-conclusion/2017-conclusion/"/>
+    <id>https://www.puzzleyx.com/2019/10/14/2017-conclusion/2017-conclusion/</id>
+    <published>2019-10-14T01:12:12.000Z</published>
+    <updated>2019-10-19T12:32:08.816Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="init" scheme="https://www.puzzleyx.com/categories/init/"/>
+    
+    
+      <category term="init" scheme="https://www.puzzleyx.com/tags/init/"/>
     
   </entry>
   

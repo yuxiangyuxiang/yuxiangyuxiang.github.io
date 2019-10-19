@@ -4,11 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="设计模式-工厂模式, Java Study">
+    <meta name="keywords" content="设计模式-单例模式, Java Study">
     <meta name="baidu-site-verification" content="4ftgyzjSh6">
     <meta name="google-site-verification" content="4ftgyzjSh6">
     <meta name="360-site-verification" content>
-    <meta name="description" content="设计模式之工厂模式&amp;amp;工厂方法模式&amp;amp;抽象工厂模式工厂模式（Factory Pattern）是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对">
+    <meta name="description" content="设计模式之单例模式单例模式是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>设计模式-工厂模式 | 鱼香肉丝的博客</title>
+    <title>设计模式-单例模式 | 鱼香肉丝的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,13 +290,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        设计模式-工厂模式
+                        设计模式-单例模式
                     </div>
                 </div>
             </div>
@@ -431,7 +431,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-19
+                    2019-10-16
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -445,14 +445,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    5 分
                 </div>
                 
                 
@@ -468,355 +468,154 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="设计模式之工厂模式-amp-工厂方法模式-amp-抽象工厂模式"><a href="#设计模式之工厂模式-amp-工厂方法模式-amp-抽象工厂模式" class="headerlink" title="设计模式之工厂模式&amp;工厂方法模式&amp;抽象工厂模式"></a>设计模式之工厂模式&amp;工厂方法模式&amp;抽象工厂模式</h2><p><em>工厂模式（Factory Pattern）是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象</em></p>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><blockquote>
-<p><strong>定义：</strong> 定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行</p>
-<p><strong>分类：</strong></p>
+                <h2 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h2><p><em>单例模式是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象</em></p>
 <blockquote>
 <ol>
-<li><em>简单工厂（Simple Factory）模式</em>，又称静态工厂方法模式</li>
-<li><em>工厂方法（Factory Method）模式</em>，又称多态性工厂模式或虚拟构造子模式</li>
-<li><em>抽象工厂（Abstract Factory）模式</em>，又称工具箱模式</li>
+<li>单例类只能有一个实例</li>
+<li>单例类必须自己创建自己的唯一实例</li>
+<li>单例类对外提供一个访问该单例的全局访问点</li>
 </ol>
 </blockquote>
-<p><strong>主要功能：</strong> 主要功能是帮助我们把对象的实例化部分抽取了出来，目的是降低系统中代码耦合度，并且增强了系统的扩展性</p>
-<p><strong>在开源框架中的使用：</strong></p>
+<h4 id="一、了解单例模式"><a href="#一、了解单例模式" class="headerlink" title="一、了解单例模式"></a>一、了解单例模式</h4><p><strong>应用场景：</strong> </p>
+<ol>
+<li>在应用场景中，某类只要求生成一个对象的时候，如一个班班主任、班长等</li>
+<li>对象需要被共享的场合。由于单例模式只允许创建一个对象，共享该对象可以节省内存，并加快对象访问速度。如Web中的配置对象、数据库中的连接池等</li>
+<li>当某类需要频繁的实例化，而创建的对象又频繁被销毁的时候，如多线程的连接池、网络连接池等<blockquote>
+<p><strong><em>注意事项：</em></strong> getInstance()方法中需要使用同步锁synchronized(Singleton.class)防止多线程同时进入造成instance被多次实例化</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>单例模式的结构：</strong></p>
 <blockquote>
-<ol>
-<li>Spring中通过getBean(“xxx”) 获取Bean</li>
-<li>Java消息服务JMS中（这以消息队列ActiveMQ为例）<pre><code> // 1、创建一个连接工厂对象，需要指定服务的ip及端口。
- ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(&quot;tcp://192.168.xx.xx:xxxxx&quot;);
- // 2、使用工厂对象创建一个Connection对象。
- Connection connection = connectionFactory.createConnection();</code></pre></li>
-</ol>
-<p><strong>为什么要使用工厂模式：</strong></p>
-<ol>
-<li><strong>解耦：</strong> 把对象的创建和使用的过程分开</li>
-<li><strong>降低代码重复：</strong> 如果创建对象的过程都很复杂，需要一定的代码量，而且很多地方都要用到，那么就会有很多的重复代码</li>
-<li><strong>降低维护成本：</strong> 由于创建过程都由工厂统一管理，所以发生业务逻辑变化，不需要找到所有需要创建某个对象的地方去逐个修正，只需要在工厂里修改即可，降低维护成本</li>
-</ol>
+<p><em>单例类：</em> 包含一个实例且能自行创建这个实例的类<br><em>访问类：</em> 使用单例的类</p>
 </blockquote>
-</blockquote>
-<hr>
-<h4 id="一、简单工厂模式"><a href="#一、简单工厂模式" class="headerlink" title="一、简单工厂模式"></a>一、简单工厂模式</h4><p><em>严格的说，简单工厂模式并不是23种常用的设计模式之一，它只算工厂模式的一个特殊实现。简单工厂模式在实际中的应用相对于其他两个工厂模式用的还是相对少得多，因为它只适应很多简单的情况</em></p>
-<p><em>最重要的是它违背了我们在概述中说的 <strong>==开放-封闭原则==</strong>（可以通过反射的机制来避免）。因为每次你要新添加一个功能，都需要在生switch-case语句（或者if-else语句）中去修改代码，添加分支条件</em></p>
-<p><strong>适用场景：</strong></p>
+<p>单例模式的结构图<br><img src="https://note.youdao.com/yws/res/3162/WEBRESOURCE4530fa811a5cf0f1fc7124974411f3ab" alt="t.jpg"></p>
+<h4 id="二、单例模式实现的几种方式"><a href="#二、单例模式实现的几种方式" class="headerlink" title="二、单例模式实现的几种方式"></a>二、单例模式实现的几种方式</h4><p><em>单例模式通常有==两种实现形式==： <strong>==懒汉式、饿汉式==</strong></em></p>
+<ol>
+<li><p><strong>懒汉式，线程不安全</strong></p>
+<blockquote>
+<p><strong>是否Lazy初始化</strong>：是</p>
+<p><strong>是否多线程安全</strong>：否</p>
+<p><em>这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁synchronized，所以严格意义上它并不算单例模式。这种方式 <strong>延迟加载(lazy loading)</strong> 很明显，不要求线程安全，在多线程不能正常工作</em></p>
+<pre><code>public class Singleton {
+ private static Singleton instance = null;</code></pre></blockquote>
+<p> private  Singleton() {<br> }<br> /**</p>
 <ul>
-<li>创建的对象较少</li>
-<li>客户端不关心对象的创建过程</li>
+<li>线程安全</li>
+<li>public static synchronized Singleton getInstance() {</li>
+<li>/<br>public static Singleton getInstance() {<br>  if (instance == null) {<pre><code>  instance = new Singleton();</code></pre>  }<br>  return instance;<br>}<br>}<pre><code></code></pre></li>
 </ul>
-<p><strong>简单工厂模式角色分配：</strong></p>
-<ol>
-<li><strong>工厂(Factory)角色：</strong> 简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。工厂类可以直接被外部调用，创建所需的产品对象</li>
-<li><strong>抽象产品(Product)角色：</strong> 简单工厂模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口</li>
-<li><strong>具体产品(Concrete Product)角色：</strong> 简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例</li>
-</ol>
-<p><strong>简单工厂模式结构图</strong></p>
-<p><img src="https://note.youdao.com/yws/res/3018/WEBRESOURCE023b70852baff37122039478cf473c41" alt="s.jpg"></p>
-<p><strong>简单工厂实例：</strong></p>
-<p><em>创建一个可以绘制不同形状的绘图工具，可以绘制圆形、长方形、正方形等，每个图形都会有一个draw()方法用于绘图</em></p>
-<ol>
-<li><p>创建Shape接口</p>
-<pre><code>public interface Shape {
- void draw();
-}</code></pre></li>
-<li><p>创建实现改接口的具体实现类</p>
-<pre><code>/**
-* 圆形
-*/
-public class Circle implements Shape {
- public Circle() {
-     System.out.println(&quot;Circle：圆形&quot;);
+</li>
+<li><p><strong>饿汉式</strong></p>
+<blockquote>
+<p><strong>是否Lazy初始化：</strong> 否</p>
+<p><strong>是否多线程安全：</strong> 是</p>
+<p><em>这种方式比较常用，但容易产生垃圾对象</em></p>
+<blockquote>
+<p>优点：没有加锁，执行效率会提高</p>
+<p>缺点：类加载时就初始化，浪费内存</p>
+<pre><code>public class Singleton_Hungry {
+ private static Singleton_Hungry instance = new Singleton_Hungry();
+ private Singleton_Hungry() {
  }
- @Override
- public void draw() {
-     System.out.println(&quot;Draw Circle&quot;);
+ public static Singleton_Hungry getInstance() {
+     return instance;
  }
-}
-/**
-* 长方形
-*/
-public class Rectangle implements Shape {
- public Rectangle() {
-     System.out.println(&quot;Rectangle：长方形&quot;);
+}</code></pre></blockquote>
+</blockquote>
+</li>
+<li><p><strong>双检锁/双重校验锁（DCL，即 double-checked locking）</strong></p>
+<blockquote>
+<p><strong>是否Lazy初始化：</strong> 是</p>
+<p><strong>是否多线程安全：</strong> 是</p>
+<p><em>这种方式采用双锁机制，安全且在多线程情况下能保持高性能</em></p>
+<blockquote>
+<p>双重检查模式，进行了两次的判断，第一次是为了避免不要的实例，第二次是为了进行同步，避免多线程问题。由于singleton=new Singleton()对象的创建在JVM中可能会进行重排序，在多线程访问下存在风险，使用volatile修饰signleton实例变量有效，解决该问题</p>
+<pre><code>public class Singleton_DCL {
+ //保证instance在所有线程同步
+ private volatile static Singleton_DCL instance = null;
+ //private避免类在外部被实例化
+ private Singleton_DCL() {
  }
- @Override
- public void draw() {
-     System.out.println(&quot;Draw Rectangle&quot;);
- }
-}
-/**
-* 正方形
-*/
-public class Square implements Shape {
- public Square() {
-     System.out.println(&quot;Square：正方形&quot;);
- }
- @Override
- public void draw() {
-     System.out.println(&quot;Draw Square&quot;);
- }
-}</code></pre></li>
-<li><p>创建工厂类</p>
-<pre><code>public class ShapeFactory {
- //使用getShape()方法获取形状类型的对象
- public static Shape getShape(String shapeType) {
-     if (shapeType == null) {
-         return null;
+ public static Singleton_DCL getInstance() {
+     if (instance == null) {
+         synchronized (Singleton_DCL.class) {
+             if (instance == null) {
+                 instance = new Singleton_DCL();
+             }
+         }
      }
-     if (shapeType.equalsIgnoreCase(&quot;CIRCLE&quot;)) {
-         return new Circle();
-     } else if (shapeType.equalsIgnoreCase(&quot;RECTANGLE&quot;)) {
-         return new Rectangle();
-     } else if (shapeType.equalsIgnoreCase(&quot;SQUARE&quot;)) {
-         return new Square();
-     }
-     return null;
+     return instance;
  }
-}</code></pre></li>
-<li><p>测试类</p>
-<pre><code>public class Client {
- public static void main(String[] args) {
-     //获取Circle的对象，并调用它的draw()方法
-     Shape circle = ShapeFactory.getShape(&quot;CIRCLE&quot;);
-     circle.draw();
-
-     //获取Rectangle的对象，并调用它的draw()方法
-     Shape rectangle = ShapeFactory.getShape(&quot;Rectangle&quot;);
-     rectangle.draw();
-
-     //获取Square的对象，并调用它的draw()方法
-     Shape square = ShapeFactory.getShape(&quot;square&quot;);
-     square.draw();
- }
-}</code></pre></li>
+}</code></pre></blockquote>
+</blockquote>
+</li>
+<li><p><strong>静态内部类单例模式</strong></p>
+<blockquote>
+<p><strong>是否Lazy初始化：</strong> 是</p>
+<p><strong>是否多线程安全：</strong> 是</p>
+<p><em>这种方式能达到双检锁方式一样的功效，但实现更简单。对静态域使用延迟初始化，应使用这种方式而不是双检锁方式。这种方式只适用于静态域的情况，双检锁方式可在实例域需要延迟初始化时使用</em></p>
+<blockquote>
+<p>只有第一次调用getInstance方法时，虚拟机才加载 Inner 并初始化instance ，只有一个线程可以获得对象的初始化锁，其他线程无法进行初始化，保证对象的唯一性。目前此方式是所有单例模式中最推荐的模式，具体根据项目选择</p>
+<pre><code>public class Singleton_staticInnerClass {</code></pre></blockquote>
+</blockquote>
+<p> private Singleton_staticInnerClass(){<br> }<br> private static class Inner {</p>
+<pre><code> private static final Singleton_staticInnerClass
+         INSTANCE = new Singleton_staticInnerClass();</code></pre><p> }<br> public static final Singleton_staticInnerClass getInstance() {</p>
+<pre><code> return Inner.INSTANCE;</code></pre><p> }<br>}</p>
+<pre><code></code></pre></li>
+<li><p><strong>枚举单例模式</strong></p>
+<blockquote>
+<p><strong>是否Lazy初始化：</strong> 否</p>
+<p><strong>是否多线程安全：</strong> 是</p>
+<p><em>这种实现方式还没有被广泛采用，但这是实现单例模式的最佳方法。它更简洁，自动支持序列化机制，绝对防止多次实例化</em></p>
+<blockquote>
+<p>这种方式是《Effective Java》中提倡的方式，它不仅能避免多线程同步问题，而且还自动支持序列化机制，防止反序列化重新创建新的对象，绝对防止多次实例化</p>
+<pre><code>public enum  Singleton_enum {
+ INSTANCE;
+ //doSomething 该实例支持的行为</code></pre></blockquote>
+</blockquote>
+<p> //可以省略此方法，通过Singleton.INSTANCE进行操作<br> public static Singleton_enum getInstance() {</p>
+<pre><code> return Singleton_enum.INSTANCE;</code></pre><p> }<br>}</p>
+<pre><code></code></pre></li>
 </ol>
-<p><strong>运行结果</strong></p>
-<pre><code>Circle：圆形
-Draw Circle
-Rectangle：长方形
-Draw Rectangle
-Square：正方形
-Draw Square</code></pre><p><em>这样的实现有个问题，如果新增新的形状类型的话，就需要修改工厂类中的getShape()方法，这明显不符合 <strong>开放-封闭原则</strong></em></p>
-<h4 id="一-一使用反射机制改造简单工厂"><a href="#一-一使用反射机制改造简单工厂" class="headerlink" title="一-一使用反射机制改造简单工厂"></a>一-一使用反射机制改造简单工厂</h4><p><strong>将工厂类改造为：</strong></p>
-<pre><code>/**
- * 利用反射解决简单工厂每次增加新的产品类型都需要修改工厂中的方法的弊端
- */
-public class ShapeFactory_1 {
-    //方式一：使用泛型省略类型强制转换，支持多态↑↓
-    public static &lt;T&gt; T getClass(Class&lt;? extends T&gt; clazz) {
-        T obj = null;
-        try {
-            obj = (T) Class.forName(clazz.getName()).newInstance();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return obj;
+<h4 id="【例子-懒汉式】"><a href="#【例子-懒汉式】" class="headerlink" title="【例子-懒汉式】"></a>【例子-懒汉式】</h4><pre><code>public class President {
+    //保证instance在所有线程中同步
+    private static volatile President instance = null;
+    //private避免类在外部被实例化
+    private President() {
+        System.out.println(&quot;选举一个总统&quot;);
     }
-    //方式二：调用时需要进行强制转换↑↓
-    public static Object getClass_1(Class&lt;? extends Shape&gt; clazz) {
-        Object obj = null;
-        try {
-            obj = Class.forName(clazz.getName()).newInstance();
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+    //在getInstance方法上加同步
+    public static synchronized President getInstance() {
+        if (instance == null) {
+            instance = new President();
+        } else {
+            System.out.println(&quot;已经实例化了...&quot;);
         }
-        return obj;
+        return instance;
     }
-}</code></pre><p><strong>测试类</strong></p>
-<pre><code>public class Client_1 {
+    public void getName() {
+        System.out.println(&quot;我是总统：川建国&quot;);
+    }
+}</code></pre><pre><code>public class Client {
     public static void main(String[] args) {
-        Circle circle = ShapeFactory_1.getClass(Circle.class);
-        circle.draw();
-        Rectangle rectangle = ShapeFactory_1.getClass(Rectangle.class);
-        rectangle.draw();
-        //方式二：
-        Square square = (Square) ShapeFactory_1.getClass_1(Square.class);
-        square.draw();
+        President zt = President.getInstance();
+        zt.getName();
+        President zt_1 = President.getInstance();
+        zt_1.getName();
+        if (zt == zt_1) {
+            System.out.println(&quot;是同一个人&quot;);
+        } else {
+            System.out.println(&quot;不是同一个人&quot;);
+        }
     }
-}</code></pre><p><em>使用反射的方式让程序符合了 <strong>开放-封闭原则</strong>，但是每一次传入的都是产品类的全部路径，还可以通过 <strong>反射+配置文件</strong>的方式改善</em></p>
-<hr>
-<h4 id="二、工厂方法模式"><a href="#二、工厂方法模式" class="headerlink" title="二、工厂方法模式"></a>二、工厂方法模式</h4><p><em>工厂方法模式是简单工厂的进一步深化，在工厂方法模式中，我们不再提供一个统一的工厂类来创建所有的对象，而是针对不同的对象提供不同的工厂。也就是说 <strong>每个对象都有一个与之对应的工厂</strong>，是工厂模式家族中用得最多的模式</em></p>
-<p><strong>适用场景：</strong></p>
-<ul>
-<li>一个类不知道它所需要的对象的类：在工厂方法模式中，客户端不需要知道具体产品类的类名，只需要知道所对应的工厂即可，具体的产品对象由具体的工厂类创建；客户端需要知道创建具体产品的工厂类</li>
-<li>一个类通过其子类来指定创建那个对象：在工厂方法模式中，对于抽象工厂类只需要提供一个创建产品的接口，而由其子类来确定具体要创建的对象，利用面向对象的多态性和里氏原则</li>
-<li>将创建对象的任务委托给多个多个工厂子类中的某一个，客户端在使用时可以无需关心是哪一个工厂子类创建产品子类，需要时再动态指定，可将具体工厂类的类名存储在配置文件或数据库中<blockquote>
-<blockquote>
-<ol>
-<li>客户只知道创建产品的工厂名，而不知道具体的产品名。如TCL电视工厂、海信电视工厂等</li>
-<li>创建对象的任务由多个具体子工厂中的某一个完成，而抽象工厂只提供创建产品的接口</li>
-<li>客户不关心创建产品的细节，只关心产品的品牌。</li>
-</ol>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<p><strong>工厂方法模式角色分配：</strong></p>
-<ol>
-<li><strong><em>抽象工厂(Abstract Factory)角色：</em></strong> 是工厂方法模式的核心，与应用程序无关。任何在模式中创建的对象的工厂必须实现这个接口</li>
-<li><strong><em>具体工厂(Concrete Factory)角色：</em></strong> 这是实现抽象接口的具体工厂类，包含于应用程序密切相关的逻辑，并且受到应用程序调用以创建某一种产品对象</li>
-<li><strong><em>抽象产品(Abstract Product)角色：</em></strong> 工厂方法模式所创建的对象的超类型，也就是产品对象的共同父类或共同拥有的接口</li>
-<li><strong><em>具体产品(Concrete Product)角色：</em></strong> 这个角色实现了抽象产品角色所定义的接口。某具体产品由专门的具体工厂创建，它们之间往往一一对应</li>
-</ol>
-<p><strong>工厂方法模式结构图</strong></p>
-<p><img src="https://note.youdao.com/yws/res/2996/WEBRESOURCEfc91804b48dd0d9481ea30a44b3f09e7" alt="q.jpg"></p>
-<p><strong>工厂方法模式实例：</strong></p>
-<p><em>上面简单工厂例子中的图形接口以及相关图像实现类不变。我们只需要增加一个工厂接口以及实现这个接口的工厂类即可</em></p>
-<ol>
-<li>增加一个工厂接口<pre><code>public interface Factory {
- Shape getShape();
-}</code></pre></li>
-<li>增加相关工厂类<pre><code>/**
-* 圆形工厂类
-*/
-public class CircleFactory implements Factory {
- @Override
- public Shape getShape() {
-     return new Circle();
- }
-}
-/**
-* 长方形工厂类
-*/
-public class RectangleFactory implements Factory {
- @Override
- public Shape getShape() {
-     return new Rectangle();
- }
-}
-/**
-* 正方形工厂类
-*/
-public class SquareFactory implements Factory {
- @Override
- public Shape getShape() {
-     return new Square();
- }
-}</code></pre></li>
-<li>测试类<pre><code>public class Client {
- public static void main(String[] args) {
-     CircleFactory circleFactory = new CircleFactory();
-     Shape circle = circleFactory.getShape();
-     circle.draw();
- }
-}</code></pre></li>
-</ol>
-<p><strong>输出结果</strong></p>
-<pre><code>Circle：圆形
-Draw Circle</code></pre><h4 id="三、抽象工厂模式"><a href="#三、抽象工厂模式" class="headerlink" title="三、抽象工厂模式"></a>三、抽象工厂模式</h4><p><em>在工厂方法模式中，我们发现我们生产的都是同一类产品。抽象工厂模式就是工厂方法模式的进一步深化，在这个模式中的工厂类不单单创建一种产品，而是可以创建一组产品</em></p>
-<p><em>是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构</em></p>
-<p><strong>适用场景：</strong></p>
-<blockquote>
-<ul>
-<li>和工厂方法一样客户端不需要知道它所创建的对象的类</li>
-<li>需要一组对象共同完成某种功能时，并且存在可能多组对象完成不同功能的情况(属于同一个产品族的产品)<blockquote>
-<ol>
-<li>当需要创建的对象是一系列相互关联或相互依赖的产品族时，如电器工厂中的电视机、洗衣机、空调等</li>
-<li>系统中有多个产品族，但每次只使用其中的某一族产品。如有人只喜欢穿某一个品牌的衣服和鞋</li>
-<li>系统中提供了产品的类库，且所有产品的接口相同，客户端不依赖产品实例的创建细节和内部结构</li>
-</ol>
-</blockquote>
-</li>
-<li>系统结构稳定，不会频繁的增加对象(当产品族中需要增加一个新的产品时，所有的工厂类都需要进行修改)</li>
-</ul>
-</blockquote>
-<p><strong>抽象工厂方法模式角色分配：</strong></p>
-<ol>
-<li><strong><em>抽象工厂(Abstract Factory)角色：</em></strong> 是工厂方法模式的核心，与应用程序无关。任何在模式中创建的对象的工厂类必须实现这个接口</li>
-<li><strong><em>具体工厂类(Concrete Factory)角色：</em></strong> 这是实现抽象工厂接口的具体工厂类，包含与应用程序密切相关的逻辑，并且受到应用程序调用以创建某一种产品对象</li>
-<li><strong><em>抽象产品(Abstract Product)角色：</em></strong> 工厂方法模式所创建对象的超类型，也就是产品对象的共同父类或共同拥有接口</li>
-<li><strong><em>具体产品(Concrete Product)角色：</em></strong> 抽象工厂模式所创建的任何产品对象都是某一个具体产品类的实例。在抽象工厂中创建的产品属于同一产品族，这不同于上面的工厂模式中的工厂只创建单一产品</li>
-</ol>
-<p><strong>抽象工厂模式结构图</strong></p>
-<p><img src="https://note.youdao.com/yws/res/3006/WEBRESOURCE08db0fe6b1e9b154b24ccb1046f6d307" alt="r.jpg"></p>
-<p><strong>抽象工厂的工厂和工厂方法中的工厂区别：</strong></p>
-<p><strong><em>==抽象工厂是生产一整套有产品的（至少要生产两个产品)，这些产品必须相互是有关系或有依赖的，而工厂方法中的工厂是生产单一产品的工厂==</em></strong></p>
-<p><strong>抽象工厂模式实例：</strong></p>
-<p><em>假设现在存在AK、M4A1两类枪，每一种枪对应一种子弹。我们现在这样考虑生产AK的工厂可以顺便生产AK使用的子弹，生产M4A1的工厂可以顺便生产M4A1使用的子弹。（AK工厂生产AK系列产品包括子弹啊，AK枪的类型啊这些，M4A1工厂同理）</em></p>
-<ol>
-<li><p>创建相关接口</p>
-<pre><code>//创建枪及子弹的接口
-public interface Gun {
- void shooting();
-}
-public interface Bullet {
- void load();
-}</code></pre></li>
-<li><p>创建接口对应的实现类</p>
-<pre><code>//枪实现类
-public class AK implements Gun {
- @Override
- public void shooting() {
-     System.out.println(&quot;shooting with AK&quot;);
- }
-}
-public class M4A1 implements Gun {
- @Override
- public void shooting() {
-     System.out.println(&quot;shooting with M4A1&quot;);
- }
-}
-//子弹实现类
-public class AK_Bullet implements Bullet {
- @Override
- public void load() {
-     System.out.println(&quot;load bullets with AK&quot;);
- }
-}
-public class M4A1_Bullet implements Bullet {
- @Override
- public void load() {
-     System.out.println(&quot;load bullets with M4A1&quot;);
- }
-}</code></pre></li>
-<li><p>创建工厂接口</p>
-<pre><code>public interface Factory {
- Gun productGun();
- Bullet productBullet();
-}</code></pre></li>
-<li><p>创建具体工厂</p>
-<pre><code>//AK工厂
-public class AK_Factory implements Factory {
-  @Override
-  public Gun productGun() {
-      return new AK();
-  }
-
-  @Override
-  public Bullet productBullet() {
-      return new AK_Bullet();
-  }
-}
-//M4A1工厂
-public class M4A1_Factory implements Factory {
-  @Override
-  public Gun productGun() {
-      return new M4A1();
-  }
-
-  @Override
-  public Bullet productBullet() {
-      return new M4A1_Bullet();
-  }
-}</code></pre></li>
-<li><p>测试类</p>
-<pre><code>public class Client {
- public static void main(String[] args) {
-     Factory factory;
-     Gun gun;
-     Bullet bullet;
-     factory = new AK_Factory();
-     bullet = factory.productBullet();
-     bullet.load();
-     gun = factory.productGun();
-     gun.shooting();
- }
-}</code></pre></li>
-</ol>
-<p><strong>输出结果</strong></p>
-<pre><code>load bullets with AK
-shooting with AK</code></pre>
+}</code></pre><p><strong>运行结果</strong></p>
+<pre><code>选举一个总统
+我是美国总统：川建国
+已经实例化一次了，不能再实例化了
+我是美国总统：川建国
+是同一个人</code></pre>
             </div>
             <hr />
 
@@ -854,7 +653,7 @@ shooting with AK</code></pre>
         repo: 'yuxiangyuxiang.github.io',
         owner: 'yuxiangyuxiang',
         admin: "yuxiangyuxiang",
-        id: '2019/10/19/she-ji-mo-shi-gong-han-mo-shi/',
+        id: '2019/10/16/she-ji-mo-shi-dan-li-mo-shi/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -875,12 +674,11 @@ shooting with AK</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/19/she-ji-mo-shi-gong-han-mo-shi/">
+                <a href="/2019/10/17/she-ji-mo-shi-gong-han-mo-shi/">
                     <div class="card-image">
                         
                         
@@ -896,9 +694,9 @@ shooting with AK</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -911,7 +709,6 @@ shooting with AK</code></pre>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -930,24 +727,24 @@ shooting with AK</code></pre>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/">
+                <a href="/2019/10/15/she-ji-mo-shi-kai-pian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="设计模式-单例模式">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="设计模式-开篇">
                         
-                        <span class="card-title">设计模式-单例模式</span>
+                        <span class="card-title">设计模式-开篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            单例模式是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。
+                            软件设计模式（Software Design Pattern），又称设计模式，是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。它描述了在软件设计过程中的一些不断重复发生的问题，以及该问题的解决方案
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-19
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-15
                             </span>
                         <span class="publish-author">
                             
