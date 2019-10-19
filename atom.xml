@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>yuyuxiang的博客</title>
+  <title>鱼香肉丝的博客</title>
   
-  <subtitle>yuxiang</subtitle>
+  <subtitle>鱼香肉丝</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://yuyuxiang.com/"/>
-  <updated>2019-10-19T06:32:16.960Z</updated>
-  <id>https://yuyuxiang.com/</id>
+  <link href="https://www.puzzleyx.com/"/>
+  <updated>2019-10-19T07:55:37.229Z</updated>
+  <id>https://www.puzzleyx.com/</id>
   
   <author>
     <name>喻祥</name>
@@ -17,11 +17,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>My First Article</title>
-    <link href="https://yuyuxiang.com/2019/10/19/my-first-article/"/>
-    <id>https://yuyuxiang.com/2019/10/19/my-first-article/</id>
+    <title>设计模式-单例模式</title>
+    <link href="https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/"/>
+    <id>https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-dan-li-mo-shi/</id>
+    <published>2019-10-19T07:51:21.000Z</published>
+    <updated>2019-10-19T07:55:37.229Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;设计模式之单例模式&quot;&gt;&lt;a href=&quot;#设计模式之单例模式&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://www.puzzleyx.com/categories/Java/"/>
+    
+    
+      <category term="设计模式" scheme="https://www.puzzleyx.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式-开篇</title>
+    <link href="https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-kai-pian/"/>
+    <id>https://www.puzzleyx.com/2019/10/19/she-ji-mo-shi-kai-pian/</id>
+    <published>2019-10-19T07:39:12.000Z</published>
+    <updated>2019-10-19T07:55:18.430Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;设计模式学习笔记（Java版）&quot;&gt;&lt;a href=&quot;#设计模式学习笔记（Java版）&quot; class=&quot;headerlink&quot; title=&quot;设计模式学习笔记（Java版）&quot;&gt;&lt;/a&gt;设计模式学习笔记（Java版）&lt;/h2&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://www.puzzleyx.com/categories/Java/"/>
+    
+    
+      <category term="设计模式" scheme="https://www.puzzleyx.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>看懂UML类图和时序图</title>
+    <link href="https://www.puzzleyx.com/2019/10/19/kan-dong-uml-lei-tu-he-shi-xu-tu/"/>
+    <id>https://www.puzzleyx.com/2019/10/19/kan-dong-uml-lei-tu-he-shi-xu-tu/</id>
     <published>2019-10-19T03:06:19.000Z</published>
-    <updated>2019-10-19T06:32:16.960Z</updated>
+    <updated>2019-10-19T08:53:06.207Z</updated>
     
     <summary type="html">
     
@@ -35,13 +87,17 @@
     
     </summary>
     
+      <category term="Java" scheme="https://www.puzzleyx.com/categories/Java/"/>
+    
+    
+      <category term="设计模式" scheme="https://www.puzzleyx.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>二零一七年终总结</title>
-    <link href="https://yuyuxiang.com/2018/01/22/2017-conclusion/"/>
-    <id>https://yuyuxiang.com/2018/01/22/2017-conclusion/</id>
+    <link href="https://www.puzzleyx.com/2018/01/22/2017-conclusion/2017-conclusion/"/>
+    <id>https://www.puzzleyx.com/2018/01/22/2017-conclusion/2017-conclusion/</id>
     <published>2018-01-22T04:32:09.000Z</published>
     <updated>2019-10-19T02:09:27.643Z</updated>
     
@@ -57,10 +113,10 @@
     
     </summary>
     
-      <category term="随笔" scheme="https://yuyuxiang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://www.puzzleyx.com/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="随笔" scheme="https://yuyuxiang.com/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://www.puzzleyx.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
