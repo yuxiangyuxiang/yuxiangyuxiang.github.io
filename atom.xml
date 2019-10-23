@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.puzzleyx.com/"/>
-  <updated>2019-10-19T12:31:41.616Z</updated>
+  <updated>2019-10-23T08:51:10.861Z</updated>
   <id>https://www.puzzleyx.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式-建造者模式(up)</title>
+    <link href="https://www.puzzleyx.com/2019/10/23/she-ji-mo-shi-jian-zao-zhe-mo-shi-up/"/>
+    <id>https://www.puzzleyx.com/2019/10/23/she-ji-mo-shi-jian-zao-zhe-mo-shi-up/</id>
+    <published>2019-10-23T08:50:16.000Z</published>
+    <updated>2019-10-23T08:51:10.861Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;设计模式之建造者模式-up&quot;&gt;&lt;a href=&quot;#设计模式之建造者模式-up&quot; class=&quot;headerlink&quot; title=&quot;设计模式之建造者模式(up)&quot;&gt;&lt;/a&gt;设计模式之建造者模式(up)&lt;/h2&gt;&lt;h4 id=&quot;一、定义&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://www.puzzleyx.com/categories/Java/"/>
+    
+    
+      <category term="设计模式" scheme="https://www.puzzleyx.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式-建造者-菜鸟教程</title>
+    <link href="https://www.puzzleyx.com/2019/10/23/she-ji-mo-shi-jian-zao-zhe-mo-shi-cai-niao-jiao-cheng/"/>
+    <id>https://www.puzzleyx.com/2019/10/23/she-ji-mo-shi-jian-zao-zhe-mo-shi-cai-niao-jiao-cheng/</id>
+    <published>2019-10-23T08:45:58.000Z</published>
+    <updated>2019-10-23T08:53:06.591Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;设计模式之建造者模式&quot;&gt;&lt;a href=&quot;#设计模式之建造者模式&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://www.puzzleyx.com/categories/Java/"/>
+    
+    
+      <category term="设计模式" scheme="https://www.puzzleyx.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>设计模式-工厂模式</title>
