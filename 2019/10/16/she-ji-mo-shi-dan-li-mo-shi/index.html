@@ -492,94 +492,116 @@
 <p>单例模式的结构图<br><img src="https://note.youdao.com/yws/res/3162/WEBRESOURCE4530fa811a5cf0f1fc7124974411f3ab" alt="t.jpg"></p>
 <h4 id="二、单例模式实现的几种方式"><a href="#二、单例模式实现的几种方式" class="headerlink" title="二、单例模式实现的几种方式"></a>二、单例模式实现的几种方式</h4><p><em>单例模式通常有==两种实现形式==： <strong>==懒汉式、饿汉式==</strong></em></p>
 <ol>
-<li><p><strong>懒汉式，线程不安全</strong></p>
-<blockquote>
+<li><strong>懒汉式，线程不安全</strong><blockquote>
 <p><strong>是否Lazy初始化</strong>：是</p>
 <p><strong>是否多线程安全</strong>：否</p>
 <p><em>这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁synchronized，所以严格意义上它并不算单例模式。这种方式 <strong>延迟加载(lazy loading)</strong> 很明显，不要求线程安全，在多线程不能正常工作</em></p>
-<pre><code>public class Singleton {
- private static Singleton instance = null;</code></pre></blockquote>
-<p> private  Singleton() {<br> }<br> /**</p>
-<ul>
-<li>线程安全</li>
-<li>public static synchronized Singleton getInstance() {</li>
-<li>/<br>public static Singleton getInstance() {<br>  if (instance == null) {<pre><code>  instance = new Singleton();</code></pre>  }<br>  return instance;<br>}<br>}<pre><code></code></pre></li>
-</ul>
+</blockquote>
 </li>
-<li><p><strong>饿汉式</strong></p>
-<blockquote>
+</ol>
+<pre><code>public class Singleton {
+    private static Singleton instance = null;
+
+    private  Singleton() {
+    }
+    /**
+     * 线程安全
+     * public static synchronized Singleton getInstance() {
+     */
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}</code></pre><ol start="2">
+<li><strong>饿汉式</strong><blockquote>
 <p><strong>是否Lazy初始化：</strong> 否</p>
 <p><strong>是否多线程安全：</strong> 是</p>
 <p><em>这种方式比较常用，但容易产生垃圾对象</em></p>
 <blockquote>
 <p>优点：没有加锁，执行效率会提高</p>
 <p>缺点：类加载时就初始化，浪费内存</p>
-<pre><code>public class Singleton_Hungry {
- private static Singleton_Hungry instance = new Singleton_Hungry();
- private Singleton_Hungry() {
- }
- public static Singleton_Hungry getInstance() {
-     return instance;
- }
-}</code></pre></blockquote>
+</blockquote>
 </blockquote>
 </li>
-<li><p><strong>双检锁/双重校验锁（DCL，即 double-checked locking）</strong></p>
-<blockquote>
+</ol>
+<pre><code>public class Singleton_Hungry {
+    private static Singleton_Hungry instance = new Singleton_Hungry();
+    private Singleton_Hungry() {
+    }
+    public static Singleton_Hungry getInstance() {
+        return instance;
+    }
+}</code></pre><ol start="3">
+<li><strong>双检锁/双重校验锁（DCL，即 double-checked locking）</strong><blockquote>
 <p><strong>是否Lazy初始化：</strong> 是</p>
 <p><strong>是否多线程安全：</strong> 是</p>
 <p><em>这种方式采用双锁机制，安全且在多线程情况下能保持高性能</em></p>
 <blockquote>
 <p>双重检查模式，进行了两次的判断，第一次是为了避免不要的实例，第二次是为了进行同步，避免多线程问题。由于singleton=new Singleton()对象的创建在JVM中可能会进行重排序，在多线程访问下存在风险，使用volatile修饰signleton实例变量有效，解决该问题</p>
-<pre><code>public class Singleton_DCL {
- //保证instance在所有线程同步
- private volatile static Singleton_DCL instance = null;
- //private避免类在外部被实例化
- private Singleton_DCL() {
- }
- public static Singleton_DCL getInstance() {
-     if (instance == null) {
-         synchronized (Singleton_DCL.class) {
-             if (instance == null) {
-                 instance = new Singleton_DCL();
-             }
-         }
-     }
-     return instance;
- }
-}</code></pre></blockquote>
+</blockquote>
 </blockquote>
 </li>
-<li><p><strong>静态内部类单例模式</strong></p>
-<blockquote>
+</ol>
+<pre><code>public class Singleton_DCL {
+    //保证instance在所有线程同步
+    private volatile static Singleton_DCL instance = null;
+    //private避免类在外部被实例化
+    private Singleton_DCL() {
+    }
+    public static Singleton_DCL getInstance() {
+        if (instance == null) {
+            synchronized (Singleton_DCL.class) {
+                if (instance == null) {
+                    instance = new Singleton_DCL();
+                }
+            }
+        }
+        return instance;
+    }
+}</code></pre><ol start="4">
+<li><strong>静态内部类单例模式</strong><blockquote>
 <p><strong>是否Lazy初始化：</strong> 是</p>
 <p><strong>是否多线程安全：</strong> 是</p>
 <p><em>这种方式能达到双检锁方式一样的功效，但实现更简单。对静态域使用延迟初始化，应使用这种方式而不是双检锁方式。这种方式只适用于静态域的情况，双检锁方式可在实例域需要延迟初始化时使用</em></p>
 <blockquote>
 <p>只有第一次调用getInstance方法时，虚拟机才加载 Inner 并初始化instance ，只有一个线程可以获得对象的初始化锁，其他线程无法进行初始化，保证对象的唯一性。目前此方式是所有单例模式中最推荐的模式，具体根据项目选择</p>
-<pre><code>public class Singleton_staticInnerClass {</code></pre></blockquote>
 </blockquote>
-<p> private Singleton_staticInnerClass(){<br> }<br> private static class Inner {</p>
-<pre><code> private static final Singleton_staticInnerClass
-         INSTANCE = new Singleton_staticInnerClass();</code></pre><p> }<br> public static final Singleton_staticInnerClass getInstance() {</p>
-<pre><code> return Inner.INSTANCE;</code></pre><p> }<br>}</p>
-<pre><code></code></pre></li>
-<li><p><strong>枚举单例模式</strong></p>
-<blockquote>
+</blockquote>
+</li>
+</ol>
+<pre><code>public class Singleton_staticInnerClass {
+
+    private Singleton_staticInnerClass(){
+    }
+    private static class Inner {
+        private static final Singleton_staticInnerClass
+                INSTANCE = new Singleton_staticInnerClass();
+    }
+    public static final Singleton_staticInnerClass getInstance() {
+        return Inner.INSTANCE;
+    }
+}</code></pre><ol start="5">
+<li><strong>枚举单例模式</strong><blockquote>
 <p><strong>是否Lazy初始化：</strong> 否</p>
 <p><strong>是否多线程安全：</strong> 是</p>
 <p><em>这种实现方式还没有被广泛采用，但这是实现单例模式的最佳方法。它更简洁，自动支持序列化机制，绝对防止多次实例化</em></p>
 <blockquote>
 <p>这种方式是《Effective Java》中提倡的方式，它不仅能避免多线程同步问题，而且还自动支持序列化机制，防止反序列化重新创建新的对象，绝对防止多次实例化</p>
-<pre><code>public enum  Singleton_enum {
- INSTANCE;
- //doSomething 该实例支持的行为</code></pre></blockquote>
 </blockquote>
-<p> //可以省略此方法，通过Singleton.INSTANCE进行操作<br> public static Singleton_enum getInstance() {</p>
-<pre><code> return Singleton_enum.INSTANCE;</code></pre><p> }<br>}</p>
-<pre><code></code></pre></li>
+</blockquote>
+</li>
 </ol>
-<h4 id="【例子-懒汉式】"><a href="#【例子-懒汉式】" class="headerlink" title="【例子-懒汉式】"></a>【例子-懒汉式】</h4><pre><code>public class President {
+<pre><code>public enum  Singleton_enum {
+    INSTANCE;
+    //doSomething 该实例支持的行为
+
+    //可以省略此方法，通过Singleton.INSTANCE进行操作
+    public static Singleton_enum getInstance() {
+        return Singleton_enum.INSTANCE;
+    }
+}</code></pre><h4 id="【例子-懒汉式】"><a href="#【例子-懒汉式】" class="headerlink" title="【例子-懒汉式】"></a>【例子-懒汉式】</h4><pre><code>public class President {
     //保证instance在所有线程中同步
     private static volatile President instance = null;
     //private避免类在外部被实例化

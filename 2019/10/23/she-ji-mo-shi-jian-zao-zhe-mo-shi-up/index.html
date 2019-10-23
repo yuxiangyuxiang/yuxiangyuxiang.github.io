@@ -489,69 +489,100 @@
 </blockquote>
 <h4 id="四、模拟场景"><a href="#四、模拟场景" class="headerlink" title="四、模拟场景"></a>四、模拟场景</h4><p><strong><em>【计算机的组装过程】我们以计算机的组装过程为例，使用建造者模式，首先我们简化计算机的组装过程，这里只考虑三个主要部分，分别为主板、显示器和操作系统</em></strong></p>
 <ol>
-<li><p><strong>定义产品类</strong></p>
+<li><strong>定义产品类</strong></li>
+</ol>
 <pre><code>@Data
 public class MacBook {
- private String mBoard;
- private String mDisplay;
- private String mOs;
+    private String mBoard;
+    private String mDisplay;
+    private String mOs;
 
- @Override
- public String toString() {
-     return &quot;MacBook{&quot; +
-             &quot;mBoard=&#39;&quot; + mBoard + &#39;\&#39;&#39; +
-             &quot;, mDisplay=&#39;&quot; + mDisplay + &#39;\&#39;&#39; +
-             &quot;, mOs=&#39;&quot; + mOs + &#39;\&#39;&#39; +
-             &#39;}&#39;;
- }
+    @Override
+    public String toString() {
+        return &quot;MacBook{&quot; +
+                &quot;mBoard=&#39;&quot; + mBoard + &#39;\&#39;&#39; +
+                &quot;, mDisplay=&#39;&quot; + mDisplay + &#39;\&#39;&#39; +
+                &quot;, mOs=&#39;&quot; + mOs + &#39;\&#39;&#39; +
+                &#39;}&#39;;
+    }
 }
-</code></pre></li>
+</code></pre><ol start="2">
+<li><strong>构建抽象的Builder类</strong>-抽象的Builder类主要是建造产品的各个组成部分</li>
 </ol>
-<pre><code>2. **构建抽象的Builder类**-抽象的Builder类主要是建造产品的各个组成部分</code></pre><p>/**</p>
-<ul>
-<li><p>抽象Builder类</p>
-</li>
-<li><p>建造MacBook产品的各个组成部分，并返回MacBook产品</p>
-</li>
-<li><p>/<br>public abstract class Builder {<br>  //设置主板<br>  public abstract void builderBoard(String board);<br>  //设置显示器<br>  public abstract void builderDisplay(String display);<br>  //设置操作系统<br>  public abstract void builderOs(String os);<br>  //创建Computer<br>  public abstract MacBook getComputer();<br>}</p>
-<pre><code>3. **具体的Builder类**-具体实例化各个部分的创建</code></pre><p>/**</p>
-</li>
-<li><p>具体builder类</p>
-</li>
-<li><p>具体实例化各个部分的创建</p>
-</li>
-<li><p>/<br>public class MacBookBuilder extends Builder {</p>
-<p>  private MacBook macBook = new MacBook();</p>
-<p>  @Override<br>  public void builderBoard(String board) {</p>
-<pre><code>  macBook.setMBoard(board);</code></pre><p>  }</p>
-<p>  @Override<br>  public void builderDisplay(String display) {</p>
-<pre><code>  macBook.setMDisplay(display);</code></pre><p>  }</p>
-<p>  @Override<br>  public void builderOs(String os) {</p>
-<pre><code>  macBook.setMOs(os);</code></pre><p>  }</p>
-<p>  @Override<br>  public MacBook getComputer() {</p>
-<pre><code>  return macBook;</code></pre><p>  }<br>}</p>
-<pre><code>4. **Director类**-是调用具体的builder构建对象的各个部分，Director类起到封装作用，避免高层模块深入到建造者内部的实现类</code></pre><p>/**</p>
-</li>
-<li><p>Director类的主要作用是调用具体的builder，</p>
-</li>
-<li><p>来构建对象的各个部分，Director类起到封装作用，避免高层模块深入到建造者内部的实现类</p>
-</li>
-<li><p>/<br>public class Director {</p>
-<p>  Builder builder = null;</p>
-<p>  public Director(Builder builder) {</p>
-<pre><code>  this.builder = builder;</code></pre><p>  }</p>
-<p>  public void construct(String board, String display, String os) {</p>
-<pre><code>  builder.builderBoard(board);
-  builder.builderDisplay(display);
-  builder.builderOs(os);</code></pre><p>  }<br>}</p>
-<pre><code>5. **客户端**</code></pre><p>public class Client {<br>  public static void main(String[] args) {</p>
-<pre><code>  Builder builder = new MacBookBuilder();
-  Director director = new Director(builder);
-  director.construct(&quot;英特尔主板&quot;,&quot;Retina显示器&quot;,&quot;Mac OS X系统&quot;);
-  System.out.println(builder.getComputer().toString());</code></pre><p>  }<br>}</p>
-<pre><code>**从上面可以看出，产品是通过具体Builder类构建的，Director封装了构建复杂产品对象的过程，对外隐藏了构建细节。Builder和Director一起将一个复杂的对象的构建与表示分离**
-</code></pre></li>
-</ul>
+<pre><code>/**
+ * 抽象Builder类
+ *  建造MacBook产品的各个组成部分，并返回MacBook产品
+ */
+public abstract class Builder {
+    //设置主板
+    public abstract void builderBoard(String board);
+    //设置显示器
+    public abstract void builderDisplay(String display);
+    //设置操作系统
+    public abstract void builderOs(String os);
+    //创建Computer
+    public abstract MacBook getComputer();
+}</code></pre><ol start="3">
+<li><strong>具体的Builder类</strong>-具体实例化各个部分的创建</li>
+</ol>
+<pre><code>/**
+ * 具体builder类
+ *  具体实例化各个部分的创建
+ */
+public class MacBookBuilder extends Builder {
+
+    private MacBook macBook = new MacBook();
+
+    @Override
+    public void builderBoard(String board) {
+        macBook.setMBoard(board);
+    }
+
+    @Override
+    public void builderDisplay(String display) {
+        macBook.setMDisplay(display);
+    }
+
+    @Override
+    public void builderOs(String os) {
+        macBook.setMOs(os);
+    }
+
+    @Override
+    public MacBook getComputer() {
+        return macBook;
+    }
+}</code></pre><ol start="4">
+<li><strong>Director类</strong>-是调用具体的builder构建对象的各个部分，Director类起到封装作用，避免高层模块深入到建造者内部的实现类</li>
+</ol>
+<pre><code>/**
+ * Director类的主要作用是调用具体的builder，
+ * 来构建对象的各个部分，Director类起到封装作用，避免高层模块深入到建造者内部的实现类
+ */
+public class Director {
+
+    Builder builder = null;
+
+    public Director(Builder builder) {
+        this.builder = builder;
+    }
+
+    public void construct(String board, String display, String os) {
+        builder.builderBoard(board);
+        builder.builderDisplay(display);
+        builder.builderOs(os);
+    }
+}</code></pre><ol start="5">
+<li><strong>客户端</strong></li>
+</ol>
+<pre><code>public class Client {
+    public static void main(String[] args) {
+        Builder builder = new MacBookBuilder();
+        Director director = new Director(builder);
+        director.construct(&quot;英特尔主板&quot;,&quot;Retina显示器&quot;,&quot;Mac OS X系统&quot;);
+        System.out.println(builder.getComputer().toString());
+    }
+}</code></pre><p><strong>从上面可以看出，产品是通过具体Builder类构建的，Director封装了构建复杂产品对象的过程，对外隐藏了构建细节。Builder和Director一起将一个复杂的对象的构建与表示分离</strong></p>
 <p><em>在实际开发中，Director常常被忽略，而是直接通过Builder的方式链式组装，同时，Builder是一个静态内部类</em></p>
 <pre><code>/**
  * 实际在开发中，Director常常被忽略，而是直接通过Builder的方式链式组装，
@@ -606,138 +637,199 @@ public class ThinkPad {
     }
 }</code></pre><p><strong>【共享单车例子】</strong></p>
 <ol>
-<li><strong>产品类</strong><pre><code>/**
-* 产品类
-*/
+<li><strong>产品类</strong></li>
+</ol>
+<pre><code>/**
+ * 产品类
+ */
 @Data
 public class Bike {
- private IFrame frame;
- private ISeat seat;
- private ITire tire;
-}</code></pre></li>
-<li><strong>组装零件类接口</strong><pre><code>/**
-* 车架
-*/
-public interface IFrame {
- void frame();
-}
-/**
-* 车座
-*/
-public interface ISeat {
- void seat();
-}
-/**
-* 车胎
-*/
-public interface ITire {
- void tire();
-}</code></pre></li>
-<li><strong>组装零件具体实现</strong><pre><code>//摩拜零件实现
-/**
-* 合金车架
-*/
-public class AlloyFrame implements IFrame {
- @Override
- public void frame() {
-     System.out.println(&quot;合金车架-Alloy&quot;);
- }
-}
-/**
-* 真皮车座
-*/
-public class DermisSeat implements ISeat {
- @Override
- public void seat() {
-     System.out.println(&quot;真皮车座-Dermis&quot;);
- }
-}
-/**
-* 实心车胎
-*/
-public class SolidTire implements ITire {
- @Override
- public void tire() {
-     System.out.println(&quot;实心车胎-Solid&quot;);
- }
-}
-</code></pre></li>
+    private IFrame frame;
+    private ISeat seat;
+    private ITire tire;
+}</code></pre><ol start="2">
+<li><strong>组装零件类接口</strong></li>
 </ol>
-<p>//ofo 零件实现类<br>/**</p>
-<ul>
-<li><p>碳质车架</p>
-</li>
-<li><p>/<br>public class CarbonFrame implements IFrame {<br>  @Override<br>  public void frame() {</p>
-<pre><code>  System.out.println(&quot;碳质车架-Carbon&quot;);</code></pre><p>  }<br>}<br>/**</p>
-</li>
-<li><p>橡胶车座</p>
-</li>
-<li><p>/<br>public class RubberSeat implements ISeat {<br>  @Override<br>  public void seat() {</p>
-<pre><code>  System.out.println(&quot;橡胶车座-Rubber&quot;);</code></pre><p>  }<br>}<br>/**</p>
-</li>
-<li><p>空心车胎</p>
-</li>
-<li><p>/<br>public class InflateTire implements ITire {<br>  @Override<br>  public void tire() {</p>
-<pre><code>  System.out.println(&quot;空心车胎-Inflate&quot;);</code></pre><p>  }<br>}</p>
-<pre><code>4. **抽象Builder类**</code></pre><p>/**</p>
-</li>
-<li><p>抽象 builder 类</p>
-</li>
-<li><p>/<br>public abstract class Builder {<br>  abstract void builderFrame();<br>  abstract void builderSeat();<br>  abstract void builderTire();<br>  abstract Bike createBike();<br>}</p>
-<pre><code>5. **具体Builder类**</code></pre><p>/**</p>
-</li>
-<li><p>具体 builder 类-摩拜</p>
-</li>
-<li><p>/<br>public class MoBikeBuilder extends Builder {</p>
-<p>  private Bike mBike = new Bike();</p>
-<p>  @Override<br>  void builderFrame() {</p>
-<pre><code>  mBike.setFrame(new AlloyFrame());</code></pre><p>  }</p>
-<p>  @Override<br>  void builderSeat() {</p>
-<pre><code>  mBike.setSeat(new DermisSeat());</code></pre><p>  }</p>
-<p>  @Override<br>  void builderTire() {</p>
-<pre><code>  mBike.setTire(new SolidTire());</code></pre><p>  }</p>
-<p>  @Override<br>  Bike createBike() {</p>
-<pre><code>  return mBike;</code></pre><p>  }<br>}</p>
-</li>
-</ul>
-<p>/**</p>
-<ul>
-<li><p>具体 builder 类-ofo</p>
-</li>
-<li><p>/<br>public class OfoBuilder extends Builder {</p>
-<p>  private Bike mBike = new Bike();</p>
-<p>  @Override<br>  void builderFrame() {</p>
-<pre><code>  mBike.setFrame(new CarbonFrame());</code></pre><p>  }</p>
-<p>  @Override<br>  void builderSeat() {</p>
-<pre><code>  mBike.setSeat(new RubberSeat());</code></pre><p>  }</p>
-<p>  @Override<br>  void builderTire() {</p>
-<pre><code>  mBike.setTire(new InflateTire());</code></pre><p>  }</p>
-<p>  @Override<br>  Bike createBike() {</p>
-<pre><code>  return mBike;</code></pre><p>  }<br>}</p>
-<pre><code>6. **指挥者类**</code></pre><p>/**</p>
-</li>
-<li><p>指挥者</p>
-</li>
-<li><p>/<br>public class Director {<br>  private Builder builder = null;</p>
-<p>  public Director(Builder builder) {</p>
-<pre><code>  this.builder = builder;</code></pre><p>  }</p>
-<p>  public Bike construct() {</p>
-<pre><code>  builder.builderFrame();
-  builder.builderSeat();
-  builder.builderTire();
-  return builder.createBike();</code></pre><p>  }<br>}</p>
-<pre><code>7. **客户端**</code></pre><p>public class Client {<br>  public static void main(String[] args) {</p>
-<pre><code>  showBike(new MoBikeBuilder());
-  showBike(new OfoBuilder());</code></pre><p>  }</p>
-<p>  private static void showBike(Builder builder) {</p>
-<pre><code>  Director director = new Director(builder);
-  Bike bike = director.construct();
-  bike.getFrame().frame();
-  bike.getSeat().seat();
-  bike.getTire().tire();</code></pre><p>  }<br>}</p>
-<pre><code>*上面示例是Builder模式的常规用法，导演类Director在Builder模式中具有很重要的作用，它用于指导具体构建者如何构建产品，控制调用先后次序，并向调用者返回完整的产品类，但是有些情况下需要简化系统结构，可以把Director和抽象建造者进行结合，示例代码：*
-</code></pre></li>
-</ul>
+<pre><code>/**
+ * 车架
+ */
+public interface IFrame {
+    void frame();
+}
+/**
+ * 车座
+ */
+public interface ISeat {
+    void seat();
+}
+/**
+ * 车胎
+ */
+public interface ITire {
+    void tire();
+}</code></pre><ol start="3">
+<li><strong>组装零件具体实现</strong></li>
+</ol>
+<pre><code>//摩拜零件实现
+/**
+ * 合金车架
+ */
+public class AlloyFrame implements IFrame {
+    @Override
+    public void frame() {
+        System.out.println(&quot;合金车架-Alloy&quot;);
+    }
+}
+/**
+ * 真皮车座
+ */
+public class DermisSeat implements ISeat {
+    @Override
+    public void seat() {
+        System.out.println(&quot;真皮车座-Dermis&quot;);
+    }
+}
+/**
+ * 实心车胎
+ */
+public class SolidTire implements ITire {
+    @Override
+    public void tire() {
+        System.out.println(&quot;实心车胎-Solid&quot;);
+    }
+}
+
+//ofo 零件实现类
+/**
+ * 碳质车架
+ */
+public class CarbonFrame implements IFrame {
+    @Override
+    public void frame() {
+        System.out.println(&quot;碳质车架-Carbon&quot;);
+    }
+}
+/**
+ * 橡胶车座
+ */
+public class RubberSeat implements ISeat {
+    @Override
+    public void seat() {
+        System.out.println(&quot;橡胶车座-Rubber&quot;);
+    }
+}
+/**
+ * 空心车胎
+ */
+public class InflateTire implements ITire {
+    @Override
+    public void tire() {
+        System.out.println(&quot;空心车胎-Inflate&quot;);
+    }
+}</code></pre><ol start="4">
+<li><strong>抽象Builder类</strong></li>
+</ol>
+<pre><code>/**
+ * 抽象 builder 类
+ */
+public abstract class Builder {
+    abstract void builderFrame();
+    abstract void builderSeat();
+    abstract void builderTire();
+    abstract Bike createBike();
+}</code></pre><ol start="5">
+<li><strong>具体Builder类</strong></li>
+</ol>
+<pre><code>/**
+ * 具体 builder 类-摩拜
+ */
+public class MoBikeBuilder extends Builder {
+
+    private Bike mBike = new Bike();
+
+    @Override
+    void builderFrame() {
+        mBike.setFrame(new AlloyFrame());
+    }
+
+    @Override
+    void builderSeat() {
+        mBike.setSeat(new DermisSeat());
+    }
+
+    @Override
+    void builderTire() {
+        mBike.setTire(new SolidTire());
+    }
+
+    @Override
+    Bike createBike() {
+        return mBike;
+    }
+}
+
+/**
+ * 具体 builder 类-ofo
+ */
+public class OfoBuilder extends Builder {
+
+    private Bike mBike = new Bike();
+
+    @Override
+    void builderFrame() {
+        mBike.setFrame(new CarbonFrame());
+    }
+
+    @Override
+    void builderSeat() {
+        mBike.setSeat(new RubberSeat());
+    }
+
+    @Override
+    void builderTire() {
+        mBike.setTire(new InflateTire());
+    }
+
+    @Override
+    Bike createBike() {
+        return mBike;
+    }
+}</code></pre><ol start="6">
+<li><strong>指挥者类</strong></li>
+</ol>
+<pre><code>/**
+ * 指挥者
+ */
+public class Director {
+    private Builder builder = null;
+
+    public Director(Builder builder) {
+        this.builder = builder;
+    }
+
+    public Bike construct() {
+        builder.builderFrame();
+        builder.builderSeat();
+        builder.builderTire();
+        return builder.createBike();
+    }
+}</code></pre><ol start="7">
+<li><strong>客户端</strong></li>
+</ol>
+<pre><code>public class Client {
+    public static void main(String[] args) {
+        showBike(new MoBikeBuilder());
+        showBike(new OfoBuilder());
+    }
+
+    private static void showBike(Builder builder) {
+        Director director = new Director(builder);
+        Bike bike = director.construct();
+        bike.getFrame().frame();
+        bike.getSeat().seat();
+        bike.getTire().tire();
+    }
+}</code></pre><p><em>上面示例是Builder模式的常规用法，导演类Director在Builder模式中具有很重要的作用，它用于指导具体构建者如何构建产品，控制调用先后次序，并向调用者返回完整的产品类，但是有些情况下需要简化系统结构，可以把Director和抽象建造者进行结合，示例代码：</em></p>
 <p><strong>改造后的抽象建造者：</strong></p>
 <pre><code>/**
  * 2.up
